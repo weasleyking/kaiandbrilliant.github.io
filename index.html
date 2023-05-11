@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kai and Brilliant</title>
+
+    <style>
+      
+      .section {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .animation-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50%;
+        position: relative;
+
+      }
+
+      /* Media query for when viewport width is greater than height */
+      @media (min-aspect-ratio: 1/1) {
+        .container {
+          flex-direction: row;
+        }
+
+        .animation-container {
+          width: 50%;
+          height: 100%;
+        }
+      }
+    </style>
+    
+  </head>
+  
+  <body>
+    <div id="section1" class="container">
+        <div id="intro" class="animation-container"></div>
+    </div>
+    
+    <div id="section2" class="container">
+        <div id="words1" class="animation-container"></div>
+        <div id="interact1" class="animation-container"></div>
+    </div>
+    
+    <div id="section3" class="container">
+        <div id="words2" class="animation-container"></div>
+        <div id="interact2" class="animation-container"></div>
+    </div>
+    
+    <div id="section4" class="container">
+        <div id="words3" class="animation-container"></div>
+        <div id="interact3" class="animation-container"></div>
+    </div>
+    
+    
+    <script>
+    // Add an empty setup function in global mode to fix the "window.p5._report" error
+    function 
+    setup() {}
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="js/intro.js"></script>
+    <script src="js/words1.js"></script>
+    <script src="js/interact1.js"></script>
+    <script src="js/words2.js"></script>
+    <script src="js/interact2.js"></script>
+    <script src="js/words3.js"></script>
+    <script src="js/interact3.js"></script>
+    <script src="js/main.js"></script>
+    
+  </body>
+  
+</html>
