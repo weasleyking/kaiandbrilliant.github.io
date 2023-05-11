@@ -7,11 +7,11 @@ const words1 = (p) => {
   let frameCounter = 0;
   let previousDrawingState = -1;
   let prevButton, nextButton;
+  let initialDimension = 600;
 
   p.setup = () => {
     const sketchContainer = p.select('#words1');
     const dimension = getDimension();
-    initialDimension = getDimension();
     const canvas = p.createCanvas(dimension, dimension);
     canvas.parent(sketchContainer);
     p.textFont('Poppins');

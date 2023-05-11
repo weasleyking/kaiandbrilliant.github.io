@@ -25,6 +25,8 @@ const interact3 = (p) => {
   
   let backgroundImage1;
   let backgroundImage2;
+  
+  let initialDimension = 600;
 
   p.preload = () => {
     for (let i = 1; i <= 5; i++) {
@@ -37,7 +39,6 @@ const interact3 = (p) => {
   p.setup = () => {
     const sketchContainer = p.select('#interact3');
     const dimension = getDimension();
-    initialDimension = getDimension();
     const canvas = p.createCanvas(dimension, dimension);
     canvas.parent(sketchContainer);
     

@@ -1,7 +1,7 @@
 const interact2 = (p) => {
   
   let img1, img2, img3;
-  let initialDimension;
+  let initialDimension = 600;
   
   p.preload = () => {
     // Load the images
@@ -12,8 +12,7 @@ const interact2 = (p) => {
 
   p.setup = () => {
     const sketchContainer = p.select('#interact2');
-    const dimension = getDimension();
-    initialDimension = getDimension();
+    const dimension = getDimension()
     const canvas = p.createCanvas(dimension, dimension);
     canvas.parent(sketchContainer);
     

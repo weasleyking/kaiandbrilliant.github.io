@@ -2,6 +2,7 @@ const intro = (p) => {
 
   let frameCounter = 0;
   let prevButton, nextButton;
+  let initialDimension = 600;
 
   p.setup = () => {
     const sketchContainer = p.select('#intro');
