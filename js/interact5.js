@@ -26,7 +26,7 @@ const interact5 = (p) => {
   let groupSnapped = Array.from({ length: gridSize }, () => Array(gridSize).fill(false));
   
   p.preload = function() {
-    for (let i = 1; i <= gridSize * gridSize; i++) {
+    for (let i = 1; i <= gridSize * gridSize - 1; i++) {
       pieceImages[i - 1] = p.loadImage(`assets/piece${i}.png`);
     }
     backgroundImage1 = p.loadImage('assets/puzzleBG.png');
