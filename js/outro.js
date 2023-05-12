@@ -1,21 +1,20 @@
-const words2 = (p) => {
+const outro = (p) => {
 
   let frameCounter = 0;
   let prevButton, nextButton;
-  
   let initialDimension = 600;
 
   p.setup = () => {
-    const sketchContainer = p.select('#words2');
+    const sketchContainer = p.select('#outro');
     const dimension = getDimension();
     const canvas = p.createCanvas(dimension, dimension);
     canvas.parent(sketchContainer);
     p.textFont('Poppins');
     p.textStyle(p.NORMAL);
     p.textAlign(p.LEFT, p.CENTER);
-
+    //p.textSize(22);
     p.textWrap(p.WORD);
-
+    //p.textLeading(40);
     
     prevButton = p.createGraphics(80, 40);
     nextButton = p.createGraphics(80, 40);
@@ -30,34 +29,25 @@ const words2 = (p) => {
     p.textSize(calculateTextSize());
     p.textLeading(calculateTextLeading());
     
-    let allText = "And I have created many projects\nthat uses interactivity \nto make topics that are often too\ncomplex and big, more\nimmediate and sympathetic.\nTopics such as:";
+    let allText = "\nHope you had fun!\nFor more cool projects,\ncheck out\nkaiwu.space";
     
     p.fill(0);
-    p.text(allText, p.width * 0.2, p.height / 2.7, p.width *0.8);
-    
-    /*
-    let charactersToAdd = p.min(p.floor(frameCounter / 2), allText.length);
-    p.text(allText.substring(0, charactersToAdd), 100, p.height / 2.7, p.width - 200);
-    
-    if(charactersToAdd === allText.length){
-      drawNextButton();
-    }
-    */
-    
-    frameCounter++;
+    p.text(allText, p.width * 0.2, p.height / 2.7, p.width *0.8); 
+
     drawPreviousButton();
-    drawNextButton();
+
+    frameCounter++;
   };
   
-  //functions to recalculate text size based on window size
+   //functions to recalculate text size based on window size
   const calculateTextSize = () => {
-    const dimension = getDimension();
-    return 16 * (dimension / initialDimension);
+    const dimension = getDimension(p);
+    return 22 * (dimension / initialDimension);
   };
 
   const calculateTextLeading = () => {
-    const dimension = getDimension();
-    return 30 * (dimension / initialDimension);
+    const dimension = getDimension(p);
+    return 40 * (dimension / initialDimension);
   };
   
   //functions to draw interactive prev and next buttons 
@@ -186,7 +176,7 @@ const words2 = (p) => {
   window.addEventListener("scroll", windowVisibilityChanged);
 };
 
-new p5(words2);
+new p5(outro);
 
 function getDimension(p) {
   const parentWidth = window.innerWidth * 0.48;

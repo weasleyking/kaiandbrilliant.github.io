@@ -4,6 +4,8 @@ const interact3 = (p) => {
   
   let circleRadius = 70;
   let circleX, circleY;
+  let offsetX;
+  let offsetY;
 
   let isDragging = false;
 
@@ -25,6 +27,7 @@ const interact3 = (p) => {
   
   let backgroundImage1;
   let backgroundImage2;
+  let backgroundImage3;
   
   let initialDimension = 600;
 
@@ -34,6 +37,7 @@ const interact3 = (p) => {
     }
     backgroundImage1 = p.loadImage('assets/Interact3BG.png');
     backgroundImage2 = p.loadImage('assets/Interact3BG2.png');
+    backgroundImage3 = p.loadImage('assets/Interact3BG3.png');
   };
 
   p.setup = () => {
@@ -60,6 +64,9 @@ const interact3 = (p) => {
     }
     if (dragCount === 1 && isDragging === false && isPlaying === false){
       p.image(backgroundImage2, 0, 0, p.width, p.height);
+    }
+    if (dragCount === 3 && isDragging === false && isPlaying === false){
+      p.image(backgroundImage3, 0, 0, p.width, p.height);
     }
   };
 
@@ -91,8 +98,8 @@ const interact3 = (p) => {
 
   function Physics() {
     if (isDragging) {
-      circleX = p.mouseX;
-      circleY = p.mouseY;
+      circleX = p.mouseX + offsetX;
+      circleY = p.mouseY + offsetY;
     } else {
       let dx = circleX - p.width / 2;
       let dy = circleY - p.height / 2;
@@ -115,6 +122,8 @@ const interact3 = (p) => {
     let d = p.dist(p.mouseX, p.mouseY, circleX, circleY);
     if (d < circleRadius) {
       isDragging = true;
+      offsetX = circleX - p.mouseX;
+      offsetY = circleY - p.mouseY;
     }
   };
 

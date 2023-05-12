@@ -1,15 +1,18 @@
+let snappedPiecesCount = 0; // global variable to track snapped pieces
+
 const interact5 = (p) => {
   
   let resetButton, toggleHintButton;
   let drawEllipse = true;
   
   let dimension = Math.max(window.innerWidth * 0.48, window.innerHeight * 0.48);
+
   
   let pieces = [];
   let gridSize = 3;
   let pieceSize = 0.2 * dimension;
   let snapThreshold = 0.15 * dimension;
-  let win = false;
+  //let win = false;
   let pieceImages = [];
   //let pieceScale = 0.5;
   let initialDimension = 600;
@@ -59,7 +62,7 @@ const interact5 = (p) => {
     }
     
     resetButton = p.createGraphics(100, 40);
-    toggleHintButton = p.createGraphics(100, 40);
+    toggleHintButton = p.createGraphics(130, 40);
     
     windowVisibilityChanged();
   };
@@ -91,13 +94,29 @@ const interact5 = (p) => {
       p.image(piece.img, piece.x, piece.y, pieceSize, pieceSize);
     }
 
+    /*
     if (!win && checkWin()) {
       dragCount = 5;
     }
+    */
     
     drawResetButton();
     drawToggleHintButton();
+    updateSnappedPiecesCount();
+    
+    //console.log("Snapped Pieces: " + snappedPiecesCount);
+
+
   };
+  
+  function updateSnappedPiecesCount() {
+    snappedPiecesCount = 0;
+    for (let i = 0; i < pieces.length; i++) {
+      if (pieces[i].snapped) {
+        snappedPiecesCount++;
+      }
+    }
+  }
   
   const isMouseOnResetButton = () => {
     let distanceFromCenter = p.dist(p.mouseX, p.mouseY, p.width - (resetButton.width / 2) - 10, 10 + (resetButton.height / 2));
@@ -175,7 +194,11 @@ const interact5 = (p) => {
     toggleHintButton.textAlign(p.CENTER, p.CENTER);
     toggleHintButton.fill(0);
     toggleHintButton.noFill();
-    toggleHintButton.text("H i n t", toggleHintButton.width / 2, toggleHintButton.height / 2);
+    if (drawEllipse) {
+      toggleHintButton.text("H i n t s  O n", toggleHintButton.width / 2, toggleHintButton.height / 2);
+    } else {
+    toggleHintButton.text("H i n t s  O f f ", toggleHintButton.width / 2, toggleHintButton.height / 2);
+    }
     p.image(toggleHintButton, 10, 10);
   };
 
@@ -191,7 +214,11 @@ const interact5 = (p) => {
     toggleHintButton.textStyle(p.NORMAL);
     toggleHintButton.textAlign(p.CENTER, p.CENTER);
     toggleHintButton.noFill();
-    toggleHintButton.text("H i n t", toggleHintButton.width / 2, toggleHintButton.height / 2);
+    if (drawEllipse) {
+      toggleHintButton.text("H i n t s  O n", toggleHintButton.width / 2, toggleHintButton.height / 2);
+    } else {
+    toggleHintButton.text("H i n t s  O f f ", toggleHintButton.width / 2, toggleHintButton.height / 2);
+    }
     p.image(toggleHintButton, 10, 10);
   };
   
@@ -246,7 +273,8 @@ const interact5 = (p) => {
       }
     }
   }
-
+  
+  /*
   function checkWin() {
       for (let i = 0; i < groupPositions.length; i++) {
         let piecesInGroup = pieces.filter(piece => piece.groupIndex === i && piece.snapped);
@@ -256,6 +284,7 @@ const interact5 = (p) => {
       }
       return true;
   }
+  */
   
   function windowVisibilityChanged() {
     let sections = Array.from(document.getElementsByClassName("section"));
@@ -290,6 +319,8 @@ const interact5 = (p) => {
     [{ x: 0.175182 * dimension, y: 0.654871 * dimension }, { x: 0.261481 * dimension, y: 0.505397 * dimension }, { x: 0.34778 * dimension, y: 0.455573 * dimension }],
     [{ x: 0.351415 * dimension, y: 0.576997 * dimension }, { x: 0.610311 * dimension, y: 0.626821 * dimension }]
     ];
+    pieceSize = 0.2 * dimension;
+    snapThreshold = 0.15 * dimension;
   };
 
   

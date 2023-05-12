@@ -1,4 +1,4 @@
-const words2 = (p) => {
+const words4 = (p) => {
 
   let frameCounter = 0;
   let prevButton, nextButton;
@@ -6,7 +6,7 @@ const words2 = (p) => {
   let initialDimension = 600;
 
   p.setup = () => {
-    const sketchContainer = p.select('#words2');
+    const sketchContainer = p.select('#words4');
     const dimension = getDimension();
     const canvas = p.createCanvas(dimension, dimension);
     canvas.parent(sketchContainer);
@@ -30,7 +30,7 @@ const words2 = (p) => {
     p.textSize(calculateTextSize());
     p.textLeading(calculateTextLeading());
     
-    let allText = "And I have created many projects\nthat uses interactivity \nto make topics that are often too\ncomplex and big, more\nimmediate and sympathetic.\nTopics such as:";
+    let allText = "This led me to play Saturn's rings like a\nvinyl record using 3D radar data from\nNASA’s Cassini spacecraft,\nask a 6-axis robot to reflect on \nand draw its own imperfection,\nand turn the walls of a building into \na playable harp using laser scanning and \ncomputer vision.";
     
     p.fill(0);
     p.text(allText, p.width * 0.2, p.height / 2.7, p.width *0.8);
@@ -186,7 +186,7 @@ const words2 = (p) => {
   window.addEventListener("scroll", windowVisibilityChanged);
 };
 
-new p5(words2);
+new p5(words4);
 
 function getDimension(p) {
   const parentWidth = window.innerWidth * 0.48;

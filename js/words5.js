@@ -2,7 +2,7 @@ const words5 = (p) => {
   
   let frameCounter = 0;
   //let previousDrawingState = -1;
-  let previousdragCount = -1;
+  let previoussnappedPiecesCount = -1;
   let prevButton, nextButton;
   
   let initialDimension = 600;
@@ -13,7 +13,7 @@ const words5 = (p) => {
     const canvas = p.createCanvas(dimension, dimension);
     canvas.parent(sketchContainer);
     p.textFont('Poppins');
-    p.textStyle(p.BOLD);
+    p.textStyle(p.NORMAL);
     p.textAlign(p.LEFT, p.CENTER);
 
     p.textWrap(p.WORD);
@@ -25,7 +25,139 @@ const words5 = (p) => {
     windowVisibilityChanged();
   };
   
-  //functions to recalculate text size based on window size
+  p.draw = () => {
+    p.background(255);
+    
+    p.textSize(calculateTextSize());
+    p.textLeading(calculateTextLeading());
+    
+    if (snappedPiecesCount !== previoussnappedPiecesCount) {
+      frameCounter = 0;
+      previoussnappedPiecesCount = snappedPiecesCount;
+    }
+    
+    let text0 = "I’m a problem solver";
+    let text1 = "and self learner";
+    let text2 = "\nwith an insatiable curiosity.";
+    let text3 = "\nI’m easily bored\ninside a comfort zone.";
+    let text4 = "\nFor every project,";
+    let text5 = "\nI challenge myself to experiment\nwith something new.";
+    let text6 = "\ncracking a new problem";
+    let text7 = "\nis my greatest joy.";
+    let text8 = "\n(this puzzle is made from the only known aperiodic monotile,\nmy fav shape)";
+
+    let textstart = p.height * 0.24
+    p.fill(0);
+    p.text(text0, p.width * 0.2, textstart, p.width *0.8);
+    
+
+    if (snappedPiecesCount === 1) {
+      
+      p.push();
+      p.fill(230, 176, 27);
+      let charactersToAdd = p.min(p.floor(frameCounter / 2), text1.length);
+      p.text("\n" + text1.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+            
+    } else if (snappedPiecesCount === 2) {
+      
+      p.text("\n" + text1, p.width * 0.2, textstart, p.width *0.8);
+
+      p.push();
+      p.fill(230, 176, 27);
+      let charactersToAdd = p.min(p.floor(frameCounter/ 2), text2.length);
+      p.text("\n" + text2.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+      
+    }else if (snappedPiecesCount === 3) {
+      
+      p.text("\n" + text1 + text2, p.width * 0.2, textstart, p.width *0.8);
+
+      p.push();
+      p.fill(230, 176, 27);
+      let charactersToAdd = p.min(p.floor(frameCounter/ 2), text3.length);
+      p.text("\n\n" + text3.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+      
+    }else if (snappedPiecesCount === 4) { 
+      
+      p.text("\n" + text1 + text2 + text3, p.width * 0.2, textstart, p.width *0.8);
+
+      p.push();
+      p.fill(230, 176, 27);
+      let charactersToAdd = p.min(p.floor(frameCounter/ 2), text4.length);
+      p.text("\n\n\n\n" + text4.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+      
+    }else if (snappedPiecesCount === 5) { 
+      
+      p.text("\n" + text1 + text2 + text3 + text4, p.width * 0.2, textstart, p.width *0.8);
+
+      p.push();
+      p.fill(230, 176, 27);
+      let charactersToAdd = p.min(p.floor(frameCounter/ 2), text5.length);
+      p.text("\n\n\n\n\n" + text5.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+
+      
+    }else if (snappedPiecesCount === 6) { 
+      
+      p.text("\n" + text1 + text2 + text3 + text4 + text5, p.width * 0.2, textstart, p.width *0.8);
+
+      p.push();
+      p.fill(230, 176, 27);
+      let charactersToAdd = p.min(p.floor(frameCounter/ 2), text6.length);
+      p.text("\n\n\n\n\n\n\n" + text6.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+      
+      drawNextButton();
+      
+    }else if (snappedPiecesCount === 7) { 
+      
+      p.text("\n" + text1 + text2 + text3 + text4 + text5 + text6, p.width * 0.2, textstart, p.width *0.8);
+
+      p.push();
+      p.fill(230, 176, 27);
+      let charactersToAdd = p.min(p.floor(frameCounter/ 2), text7.length);
+      p.text("\n\n\n\n\n\n\n\n" + text7.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+      
+      drawNextButton();
+      
+    }else if (snappedPiecesCount === 8) { 
+      
+      p.text("\n" + text1 + text2 + text3 + text4 + text5 + text6 + text7, p.width * 0.2, textstart, p.width *0.8);
+
+      p.push();
+      p.fill(0);
+      p.textStyle(p.NORMAL);
+      p.textSize(calculateTextSize() - 10);
+      p.textLeading(calculateTextLeading() - 10);
+      let charactersToAdd = p.min(p.floor(frameCounter), text8.length);
+      p.text("\n\n\n\n\n\n\n\n\n\n\n\n" + text8.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+      
+      drawNextButton();
+      
+    }else if (snappedPiecesCount > 8) {
+      p.text("\n" + text1 + text2 + text3 + text4 + text5 + text6 + text7, p.width * 0.2, textstart, p.width *0.8);
+      
+      p.push();
+      p.fill(0);
+      p.textStyle(p.NORMAL);
+      p.textSize(calculateTextSize() - 10);
+      p.textLeading(calculateTextLeading() - 10);
+      p.text("\n\n\n\n\n\n\n\n\n\n\n\n" + text8, p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+      drawNextButton();
+    }
+
+    frameCounter++;
+    
+    drawPreviousButton();
+  };
+  
+    //functions to recalculate text size based on window size
   const calculateTextSize = () => {
     const dimension = getDimension(p);
     return 18 * (dimension / initialDimension);
@@ -125,96 +257,6 @@ const words5 = (p) => {
     } else if (isMouseOnNextButton()) {
       scrollToSection("down");
     }
-  };
-  
-  p.draw = () => {
-    p.background(255);
-    
-    p.textSize(calculateTextSize());
-    p.textLeading(calculateTextLeading());
-    
-    if (dragCount !== previousdragCount) {
-      frameCounter = 0;
-      previousdragCount = dragCount;
-    }
-    
-    let introText = "My experience with architecture\ngave me skills and mindset\nto communicate complex \nconcepts visually.";
-    let engageText = "\n\n\n\nthrough form,";
-    let storiesText = "\n\n\n\n\ncomposition, ";
-    let memoriesText = "\n\n\n\n\n\nand color.";
-    let artistText = "\n\n\n\n\n\n\nIt also enabled me to think\nboth like an artist";
-    let engText = "\n\n\n\n\n\n\n\n\nand an engineer.";
-
-    let textstart = p.height * 0.27
-    p.fill(0);
-    p.text(introText, p.width * 0.2, textstart, p.width *0.8);
-    
-
-    if (dragCount === 1) {
-      /*
-      p.push();
-      p.fill(199, 30, 30);
-      let charactersToAdd = p.min(p.floor(frameCounter / 2), engageText.length);
-      p.text(engageText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-      */
-      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
-    } else if (dragCount === 2) {
-      /*
-      p.push();
-      p.fill(199, 30, 30);
-      p.text(engageText, p.width * 0.2, p.height/ 3.2, p.width *0.8);
-      p.pop();
-      
-      p.push();
-      p.fill(199, 30, 30);
-      let charactersToAdd = p.min(p.floor((frameCounter - (engageText.length)) / 2), storiesText.length);
-      p.text(storiesText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-      */
-      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(storiesText, p.width * 0.2, textstart, p.width *0.8);
-    }else if (dragCount === 3) {
-      /*
-      p.push();
-      p.fill(199, 30, 30);
-      p.text(engageText, p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-      
-      p.push();
-      p.fill(199, 30, 30);
-      p.text(storiesText, p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-
-      p.push();
-      p.fill(15, 89, 159);
-      let charactersToAdd = p.min(p.floor((frameCounter - (storiesText.length) - (engageText.length)) / 2), memoriesText.length);
-      p.text(memoriesText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-      */
-      
-      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(storiesText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(memoriesText, p.width * 0.2, textstart, p.width *0.8);
-    }else if (dragCount === 4) { 
-      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(storiesText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(memoriesText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(artistText, p.width * 0.2, textstart, p.width *0.8);
-    }else if (dragCount >= 5) { 
-      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(storiesText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(memoriesText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(artistText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(engText, p.width * 0.2, textstart, p.width *0.8);
-
-      drawNextButton();
-      
-    }
-
-    frameCounter++;
-    
-    drawPreviousButton();
   };
   
   p.windowResized = () => {

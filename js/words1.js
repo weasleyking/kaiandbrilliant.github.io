@@ -15,7 +15,7 @@ const words1 = (p) => {
     const canvas = p.createCanvas(dimension, dimension);
     canvas.parent(sketchContainer);
     p.textFont('Poppins');
-    p.textStyle(p.BOLD);
+    p.textStyle(p.NORMAL);
     p.textAlign(p.LEFT, p.CENTER);
 
     p.textWrap(p.WORD);
@@ -27,7 +27,60 @@ const words1 = (p) => {
     windowVisibilityChanged();
   };
   
-  //functions to recalculate text size based on window size
+  
+  p.draw = () => {
+    p.background(255);
+    
+    p.textSize(calculateTextSize());
+    p.textLeading(calculateTextLeading());
+    
+    if (drawingState !== previousDrawingState) {
+      frameCounter = 0;
+      previousDrawingState = drawingState;
+    }
+    
+    let introText = "We share the belief that only\nthrough interactivity can we ";
+    let engageText = "\n\nengage people,";
+    let storiesText = "\n\n\ntell stories,";
+    let memoriesText = "\n\n\n\nand create memories.";
+
+    p.fill(0);
+    p.text(introText, p.width * 0.2, p.height / 2.7, p.width *0.8);
+
+    p.push();
+    p.fill(230, 176, 27);
+    p.text(engageText, p.width * 0.2, p.height / 2.7, p.width *0.8);
+    p.pop();
+
+    if (drawingState === 1) {
+      p.push();
+      p.fill(199, 30, 30);
+      let charactersToAdd = p.min(p.floor(frameCounter / 2), storiesText.length);
+      p.text(storiesText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
+      p.pop();
+    } else if (drawingState === 2) {
+      p.push();
+      p.fill(199, 30, 30);
+      p.text(storiesText, p.width * 0.2, p.height / 2.7, p.width *0.8);
+      p.pop();
+
+      p.push();
+      p.fill(15, 89, 159);
+      let charactersToAdd = p.min(p.floor(frameCounter  / 2), memoriesText.length);
+      p.text(memoriesText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
+      p.pop();
+      
+      if(charactersToAdd === memoriesText.length){
+        drawNextButton();
+      }
+    }
+
+    frameCounter++;
+    
+    drawPreviousButton();
+  };
+  
+   //functions to recalculate text size based on window size
   const calculateTextSize = () => {
     const dimension = getDimension(p);
     return 18 * (dimension / initialDimension);
@@ -127,58 +180,6 @@ const words1 = (p) => {
     } else if (isMouseOnNextButton()) {
       scrollToSection("down");
     }
-  };
-  
-  p.draw = () => {
-    p.background(255);
-    
-    p.textSize(calculateTextSize());
-    p.textLeading(calculateTextLeading());
-    
-    if (drawingState !== previousDrawingState) {
-      frameCounter = 0;
-      previousDrawingState = drawingState;
-    }
-    
-    let introText = "We share the belief that only\nthrough interactivity can we ";
-    let engageText = "\n\nengage people,";
-    let storiesText = "\n\n\ntell stories,";
-    let memoriesText = "\n\n\n\nand create memories.";
-
-    p.fill(0);
-    p.text(introText, p.width * 0.2, p.height / 2.7, p.width *0.8);
-
-    p.push();
-    p.fill(230, 176, 27);
-    p.text(engageText, p.width * 0.2, p.height / 2.7, p.width *0.8);
-    p.pop();
-
-    if (drawingState === 1) {
-      p.push();
-      p.fill(199, 30, 30);
-      let charactersToAdd = p.min(p.floor(frameCounter / 2), storiesText.length);
-      p.text(storiesText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-    } else if (drawingState === 2) {
-      p.push();
-      p.fill(199, 30, 30);
-      p.text(storiesText, p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-
-      p.push();
-      p.fill(15, 89, 159);
-      let charactersToAdd = p.min(p.floor((frameCounter - (storiesText.length)) / 2), memoriesText.length);
-      p.text(memoriesText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-      
-      if(charactersToAdd === memoriesText.length){
-        drawNextButton();
-      }
-    }
-
-    frameCounter++;
-    
-    drawPreviousButton();
   };
   
   p.windowResized = () => {

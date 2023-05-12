@@ -13,7 +13,7 @@ const words3 = (p) => {
     const canvas = p.createCanvas(dimension, dimension);
     canvas.parent(sketchContainer);
     p.textFont('Poppins');
-    p.textStyle(p.BOLD);
+    p.textStyle(p.NORMAL);
     p.textAlign(p.LEFT, p.CENTER);
 
     p.textWrap(p.WORD);
@@ -24,6 +24,91 @@ const words3 = (p) => {
 
     windowVisibilityChanged();
   };
+  
+  p.draw = () => {
+    p.background(255);
+    
+    p.textSize(calculateTextSize());
+    p.textLeading(calculateTextLeading());
+    
+    if (dragCount !== previousdragCount) {
+      frameCounter = 0;
+      previousdragCount = dragCount;
+    }
+    
+   let text0 = "My experience with architecture\ngave me the skills and mindset\nto communicate complex \nconcepts visually.";
+    let text1 = "\nthrough form,";
+    let text2 = "\ncomposition, ";
+    let text3 = "\nand color.";
+    let text4 = "\nIt also enabled me to think\nboth like an artist";
+    let text5 = "\nand an engineer.";
+
+    let textstart = p.height * 0.27
+    p.fill(0);
+    p.text(text0, p.width * 0.2, textstart, p.width *0.8);
+    
+
+    if (dragCount === 1) {
+      
+      p.push();
+      p.fill(199, 30, 30);
+      let charactersToAdd = p.min(p.floor(frameCounter / 2), text1.length);
+      p.text("\n\n\n" + text1.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+            
+    } else if (dragCount === 2) {
+      
+      p.text("\n\n\n" + text1, p.width * 0.2, textstart, p.width *0.8);
+
+      p.push();
+      p.fill(199, 30, 30);
+      let charactersToAdd = p.min(p.floor(frameCounter/ 2), text2.length);
+      p.text("\n\n\n\n" + text2.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+      
+    }else if (dragCount === 3) {
+      
+      p.text("\n\n\n" + text1 + text2, p.width * 0.2, textstart, p.width *0.8);
+
+      p.push();
+      p.fill(199, 30, 30);
+      let charactersToAdd = p.min(p.floor(frameCounter/ 2), text3.length);
+      p.text("\n\n\n\n\n" + text3.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+      
+    }else if (dragCount === 4) { 
+      
+      p.text("\n\n\n" + text1 + text2 + text3, p.width * 0.2, textstart, p.width *0.8);
+
+      p.push();
+      p.fill(199, 30, 30);
+      let charactersToAdd = p.min(p.floor(frameCounter/ 2), text4.length);
+      p.text("\n\n\n\n\n\n" + text4.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+      
+    }else if (dragCount === 5) { 
+      
+      p.text("\n\n\n" + text1 + text2 + text3 + text4, p.width * 0.2, textstart, p.width *0.8);
+
+      p.push();
+      p.fill(199, 30, 30);
+      let charactersToAdd = p.min(p.floor(frameCounter/ 2), text5.length);
+      p.text("\n\n\n\n\n\n\n\n" + text5.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.pop();
+      
+      drawNextButton();
+      
+    }else if (dragCount > 5) {
+      p.text("\n\n\n" + text1 + text2 + text3 + text4 + text5, p.width * 0.2, textstart, p.width *0.8);
+      drawNextButton();
+    }
+    
+  
+    frameCounter++;
+    
+    drawPreviousButton();
+  };
+  
   
   //functions to recalculate text size based on window size
   const calculateTextSize = () => {
@@ -125,96 +210,6 @@ const words3 = (p) => {
     } else if (isMouseOnNextButton()) {
       scrollToSection("down");
     }
-  };
-  
-  p.draw = () => {
-    p.background(255);
-    
-    p.textSize(calculateTextSize());
-    p.textLeading(calculateTextLeading());
-    
-    if (dragCount !== previousdragCount) {
-      frameCounter = 0;
-      previousdragCount = dragCount;
-    }
-    
-    let introText = "My experience with architecture\ngave me skills and mindset\nto communicate complex \nconcepts visually.";
-    let engageText = "\n\n\n\nthrough form,";
-    let storiesText = "\n\n\n\n\ncomposition, ";
-    let memoriesText = "\n\n\n\n\n\nand color.";
-    let artistText = "\n\n\n\n\n\n\nIt also enabled me to think\nboth like an artist";
-    let engText = "\n\n\n\n\n\n\n\n\nand an engineer.";
-
-    let textstart = p.height * 0.27
-    p.fill(0);
-    p.text(introText, p.width * 0.2, textstart, p.width *0.8);
-    
-
-    if (dragCount === 1) {
-      /*
-      p.push();
-      p.fill(199, 30, 30);
-      let charactersToAdd = p.min(p.floor(frameCounter / 2), engageText.length);
-      p.text(engageText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-      */
-      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
-    } else if (dragCount === 2) {
-      /*
-      p.push();
-      p.fill(199, 30, 30);
-      p.text(engageText, p.width * 0.2, p.height/ 3.2, p.width *0.8);
-      p.pop();
-      
-      p.push();
-      p.fill(199, 30, 30);
-      let charactersToAdd = p.min(p.floor((frameCounter - (engageText.length)) / 2), storiesText.length);
-      p.text(storiesText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-      */
-      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(storiesText, p.width * 0.2, textstart, p.width *0.8);
-    }else if (dragCount === 3) {
-      /*
-      p.push();
-      p.fill(199, 30, 30);
-      p.text(engageText, p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-      
-      p.push();
-      p.fill(199, 30, 30);
-      p.text(storiesText, p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-
-      p.push();
-      p.fill(15, 89, 159);
-      let charactersToAdd = p.min(p.floor((frameCounter - (storiesText.length) - (engageText.length)) / 2), memoriesText.length);
-      p.text(memoriesText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
-      p.pop();
-      */
-      
-      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(storiesText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(memoriesText, p.width * 0.2, textstart, p.width *0.8);
-    }else if (dragCount === 4) { 
-      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(storiesText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(memoriesText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(artistText, p.width * 0.2, textstart, p.width *0.8);
-    }else if (dragCount >= 5) { 
-      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(storiesText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(memoriesText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(artistText, p.width * 0.2, textstart, p.width *0.8);
-      p.text(engText, p.width * 0.2, textstart, p.width *0.8);
-
-      drawNextButton();
-      
-    }
-
-    frameCounter++;
-    
-    drawPreviousButton();
   };
   
   p.windowResized = () => {

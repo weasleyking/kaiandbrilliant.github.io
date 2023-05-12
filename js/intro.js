@@ -133,7 +133,7 @@ const intro = (p) => {
     let allText = "Hey Brilliant! \nMy name is Kai. \nI think we will make\ngreat things together,\nbecause:";
     
     p.fill(0);
-    let charactersToAdd = p.min(p.floor(frameCounter / 2), allText.length);
+    let charactersToAdd = p.min(p.floor(frameCounter / 1.5), allText.length);
     p.text(allText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
     
     if(charactersToAdd === allText.length){

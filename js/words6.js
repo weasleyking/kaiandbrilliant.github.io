@@ -1,4 +1,4 @@
-const words2 = (p) => {
+const words6 = (p) => {
 
   let frameCounter = 0;
   let prevButton, nextButton;
@@ -6,7 +6,7 @@ const words2 = (p) => {
   let initialDimension = 600;
 
   p.setup = () => {
-    const sketchContainer = p.select('#words2');
+    const sketchContainer = p.select('#words6');
     const dimension = getDimension();
     const canvas = p.createCanvas(dimension, dimension);
     canvas.parent(sketchContainer);
@@ -27,13 +27,14 @@ const words2 = (p) => {
   p.draw = () => {
     p.background(255);
     
-    p.textSize(calculateTextSize());
-    p.textLeading(calculateTextLeading());
+    p.textSize(calculateTextSize()-3);
+    p.textLeading(calculateTextLeading()-3);
     
-    let allText = "And I have created many projects\nthat uses interactivity \nto make topics that are often too\ncomplex and big, more\nimmediate and sympathetic.\nTopics such as:";
+    let allText = "That’s why as a violinist\nI apprenticed and learned to\ncraft my own instrument;\n\nor for a VR film I invented\nan advanced locomotion technique\nthat allowed viewers to walk\nboth space & time of the footage;\n\nor, for a (secret) project going on NASA’s zero-G flight,\nI taught myself how to make a\nmechanical gyroscopic inertial navigation system\n\n(many of these thanks to brilliant.org!)";
     
     p.fill(0);
-    p.text(allText, p.width * 0.2, p.height / 2.7, p.width *0.8);
+    p.text(allText, p.width * 0.2, p.height *0.2, p.width *0.8);
+    
     
     /*
     let charactersToAdd = p.min(p.floor(frameCounter / 2), allText.length);
@@ -186,7 +187,7 @@ const words2 = (p) => {
   window.addEventListener("scroll", windowVisibilityChanged);
 };
 
-new p5(words2);
+new p5(words6);
 
 function getDimension(p) {
   const parentWidth = window.innerWidth * 0.48;
