@@ -26,13 +26,13 @@ const outro = (p) => {
   p.draw = () => {
     p.background(255);
     
-    p.textSize(calculateTextSize());
-    p.textLeading(calculateTextLeading());
+    p.textSize(calculateTextSize()-8);
+    p.textLeading(calculateTextLeading()-8);
     
-    let allText = "\nHope you had fun!\nFor more cool projects,\ncheck out\nkaiwu.space";
+    let allText = "With our shared passion for\nengaging people through interactivity,\n\nI look forward to meeting Brilliant’s diverse\nteam of scientists, engineers, and artists,\n\nand I’m excited to experiment with new tools,\nsolve challenging problems,\nand make some amazing things together.";
     
     p.fill(0);
-    p.text(allText, p.width * 0.2, p.height / 2.7, p.width *0.8); 
+    p.text(allText, p.width * 0.2, p.height*0.28, p.width *0.8); 
 
     drawPreviousButton();
 
