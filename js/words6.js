@@ -144,12 +144,13 @@ const words6 = (p) => {
     nextButton.text("N e x t", nextButton.width / 2, nextButton.height / 2);
     p.image(nextButton, 10, p.height - 50);
   };
-  p.mousePressed = () => {
+  p.mousePressed = p.touchStarted = () => {
     if (isMouseOnPreviousButton()) {
       scrollToSection("up");
     } else if (isMouseOnNextButton()) {
       scrollToSection("down");
     }
+    return false;
   };
   
   p.windowResized = () => {
