@@ -170,6 +170,16 @@ const interact3 = (p) => {
   };
   
   window.addEventListener("scroll", windowVisibilityChanged);
+
+  function displayText() {
+    fill(255);
+    textSize(16);
+    text(`Drags: ${dragCount}`, 10, 50);
+    text(isPlaying, 10, 70);
+    text(interpolation, 10, 90);
+    text(animFrame, 10, 110);
+    text(canvasFrame, 10, 130);
+  }
 };
 
 new p5(interact3);
