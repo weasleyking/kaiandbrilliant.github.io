@@ -158,9 +158,6 @@ const interact3 = (p) => {
     p.resizeCanvas(dimension, dimension);
     //p.textSize(calculateTextSize());
     //p.textLeading(calculateTextLeading());
-    img1.resize(p.height*1.5, 0);
-    img2.resize(p.height*1.3, 0);
-    img3.resize(p.height*1.4, 0);
   };
   
   window.addEventListener("scroll", windowVisibilityChanged);

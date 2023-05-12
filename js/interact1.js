@@ -66,7 +66,7 @@ const interact1 = (p) => {
 
   p.draw = () => {
     dia = p.width * 0.12;
-    p.background(250);
+    p.background(255);
     
     if (drawingState === 0 && drawingStarted === false){
       p.image(backgroundImage1, 0, 0, p.width, p.height);

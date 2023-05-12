@@ -1,12 +1,14 @@
-const words2 = (p) => {
-
+const words5 = (p) => {
+  
   let frameCounter = 0;
+  //let previousDrawingState = -1;
+  let previousdragCount = -1;
   let prevButton, nextButton;
   
   let initialDimension = 600;
 
   p.setup = () => {
-    const sketchContainer = p.select('#words2');
+    const sketchContainer = p.select('#words5');
     const dimension = getDimension();
     const canvas = p.createCanvas(dimension, dimension);
     canvas.parent(sketchContainer);
@@ -25,13 +27,13 @@ const words2 = (p) => {
   
   //functions to recalculate text size based on window size
   const calculateTextSize = () => {
-    const dimension = getDimension();
-    return 16 * (dimension / initialDimension);
+    const dimension = getDimension(p);
+    return 18 * (dimension / initialDimension);
   };
 
   const calculateTextLeading = () => {
-    const dimension = getDimension();
-    return 30 * (dimension / initialDimension);
+    const dimension = getDimension(p);
+    return 32 * (dimension / initialDimension);
   };
   
   //functions to draw interactive prev and next buttons 
@@ -131,23 +133,88 @@ const words2 = (p) => {
     p.textSize(calculateTextSize());
     p.textLeading(calculateTextLeading());
     
-    let allText = "And I have created many projects\nthat uses interactivity \nto make topics that are often too\ncomplex and big, more\nimmediate and sympathetic.\nTopics such as:";
-    
-    p.fill(0);
-    p.text(allText, p.width * 0.2, p.height / 2.7, p.width *0.8);
-    
-    /*
-    let charactersToAdd = p.min(p.floor(frameCounter / 2), allText.length);
-    p.text(allText.substring(0, charactersToAdd), 100, p.height / 2.7, p.width - 200);
-    
-    if(charactersToAdd === allText.length){
-      drawNextButton();
+    if (dragCount !== previousdragCount) {
+      frameCounter = 0;
+      previousdragCount = dragCount;
     }
-    */
     
+    let introText = "My experience with architecture\ngave me skills and mindset\nto communicate complex \nconcepts visually.";
+    let engageText = "\n\n\n\nthrough form,";
+    let storiesText = "\n\n\n\n\ncomposition, ";
+    let memoriesText = "\n\n\n\n\n\nand color.";
+    let artistText = "\n\n\n\n\n\n\nIt also enabled me to think\nboth like an artist";
+    let engText = "\n\n\n\n\n\n\n\n\nand an engineer.";
+
+    let textstart = p.height * 0.27
+    p.fill(0);
+    p.text(introText, p.width * 0.2, textstart, p.width *0.8);
+    
+
+    if (dragCount === 1) {
+      /*
+      p.push();
+      p.fill(199, 30, 30);
+      let charactersToAdd = p.min(p.floor(frameCounter / 2), engageText.length);
+      p.text(engageText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
+      p.pop();
+      */
+      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
+    } else if (dragCount === 2) {
+      /*
+      p.push();
+      p.fill(199, 30, 30);
+      p.text(engageText, p.width * 0.2, p.height/ 3.2, p.width *0.8);
+      p.pop();
+      
+      p.push();
+      p.fill(199, 30, 30);
+      let charactersToAdd = p.min(p.floor((frameCounter - (engageText.length)) / 2), storiesText.length);
+      p.text(storiesText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
+      p.pop();
+      */
+      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
+      p.text(storiesText, p.width * 0.2, textstart, p.width *0.8);
+    }else if (dragCount === 3) {
+      /*
+      p.push();
+      p.fill(199, 30, 30);
+      p.text(engageText, p.width * 0.2, p.height / 2.7, p.width *0.8);
+      p.pop();
+      
+      p.push();
+      p.fill(199, 30, 30);
+      p.text(storiesText, p.width * 0.2, p.height / 2.7, p.width *0.8);
+      p.pop();
+
+      p.push();
+      p.fill(15, 89, 159);
+      let charactersToAdd = p.min(p.floor((frameCounter - (storiesText.length) - (engageText.length)) / 2), memoriesText.length);
+      p.text(memoriesText.substring(0, charactersToAdd), p.width * 0.2, p.height / 2.7, p.width *0.8);
+      p.pop();
+      */
+      
+      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
+      p.text(storiesText, p.width * 0.2, textstart, p.width *0.8);
+      p.text(memoriesText, p.width * 0.2, textstart, p.width *0.8);
+    }else if (dragCount === 4) { 
+      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
+      p.text(storiesText, p.width * 0.2, textstart, p.width *0.8);
+      p.text(memoriesText, p.width * 0.2, textstart, p.width *0.8);
+      p.text(artistText, p.width * 0.2, textstart, p.width *0.8);
+    }else if (dragCount >= 5) { 
+      p.text(engageText, p.width * 0.2, textstart, p.width *0.8);
+      p.text(storiesText, p.width * 0.2, textstart, p.width *0.8);
+      p.text(memoriesText, p.width * 0.2, textstart, p.width *0.8);
+      p.text(artistText, p.width * 0.2, textstart, p.width *0.8);
+      p.text(engText, p.width * 0.2, textstart, p.width *0.8);
+
+      drawNextButton();
+      
+    }
+
     frameCounter++;
+    
     drawPreviousButton();
-    drawNextButton();
   };
   
   p.windowResized = () => {
@@ -185,7 +252,7 @@ const words2 = (p) => {
   window.addEventListener("scroll", windowVisibilityChanged);
 };
 
-new p5(words2);
+new p5(words5);
 
 function getDimension(p) {
   const parentWidth = window.innerWidth * 0.48;

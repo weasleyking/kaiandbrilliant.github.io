@@ -28,12 +28,12 @@ const words3 = (p) => {
   //functions to recalculate text size based on window size
   const calculateTextSize = () => {
     const dimension = getDimension(p);
-    return 16 * (dimension / initialDimension);
+    return 18 * (dimension / initialDimension);
   };
 
   const calculateTextLeading = () => {
     const dimension = getDimension(p);
-    return 30 * (dimension / initialDimension);
+    return 32 * (dimension / initialDimension);
   };
   
   //functions to draw interactive prev and next buttons 
@@ -128,7 +128,7 @@ const words3 = (p) => {
   };
   
   p.draw = () => {
-    p.background(250);
+    p.background(255);
     
     p.textSize(calculateTextSize());
     p.textLeading(calculateTextLeading());
@@ -145,7 +145,7 @@ const words3 = (p) => {
     let artistText = "\n\n\n\n\n\n\nIt also enabled me to think\nboth like an artist";
     let engText = "\n\n\n\n\n\n\n\n\nand an engineer.";
 
-    let textstart = p.height * 0.25
+    let textstart = p.height * 0.27
     p.fill(0);
     p.text(introText, p.width * 0.2, textstart, p.width *0.8);
     

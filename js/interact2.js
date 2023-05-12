@@ -72,7 +72,7 @@ const interact2 = (p) => {
   }
   
   p.draw = () => {
-    p.background(250);
+    p.background(255);
     p.textSize(calculateTextSize());
     p.textLeading(calculateTextLeading());
     
