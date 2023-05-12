@@ -36,7 +36,7 @@ const words5 = (p) => {
       previoussnappedPiecesCount = snappedPiecesCount;
     }
     
-    let text0 = "I’m a problem solver";
+    let text0 = "You are looking for a problem solver";
     let text1 = "and self learner";
     let text2 = "\nwith an insatiable curiosity.";
     let text3 = "\nI’m easily bored\ninside a comfort zone.";
