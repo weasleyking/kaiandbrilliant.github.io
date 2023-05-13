@@ -321,6 +321,7 @@ const interact5 = (p) => {
     ];
     pieceSize = 0.2 * dimension;
     snapThreshold = 0.15 * dimension;
+    resetGame();
   };
 
   
