@@ -50,6 +50,10 @@ function scrollToSection(direction) {
   }
 }
 
+window.addEventListener('resize', () => {
+  currentSectionIndex = 0; // Reset current section index when the window is resized
+});
+
 /*
 function scrollToSection(direction) {
   let sections = Array.from(document.getElementsByClassName('container'));
