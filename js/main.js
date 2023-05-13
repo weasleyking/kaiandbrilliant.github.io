@@ -29,7 +29,6 @@ function scrollToSection(direction) {
       top: sections[targetSectionIndex].offsetTop,
       behavior: 'smooth',
     });
-  }
 }
 
 /*
