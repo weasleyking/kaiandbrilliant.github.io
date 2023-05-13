@@ -134,7 +134,7 @@ const words5 = (p) => {
       p.textSize(calculateTextSize() - 10);
       p.textLeading(calculateTextLeading() - 10);
       let charactersToAdd = p.min(p.floor(frameCounter), text8.length);
-      p.text("\n\n\n\n\n\n\n\n\n\n\n\n" + text8.substring(0, charactersToAdd), p.width * 0.2, textstart, p.width *0.8);
+      p.text(text8.substring(0, charactersToAdd), p.width * 0.2, textstart + p.height * 0.5, p.width *0.8);
       p.pop();
       
       drawNextButton();
@@ -147,7 +147,7 @@ const words5 = (p) => {
       p.textStyle(p.NORMAL);
       p.textSize(calculateTextSize() - 10);
       p.textLeading(calculateTextLeading() - 10);
-      p.text("\n\n\n\n\n\n\n\n\n\n\n\n" + text8, p.width * 0.2, textstart, p.width *0.8);
+      p.text(text8, p.width * 0.2, textstart + p.height * 0.5, p.width *0.8);
       p.pop();
       drawNextButton();
     }
