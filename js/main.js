@@ -11,7 +11,8 @@ function disableScroll() {
 function scrollToSection(direction) {
   let sections = Array.from(document.getElementsByClassName('container'));
   let currentSectionIndex = sections.findIndex((section) => {
-    return window.scrollY >= section.offsetTop && window.scrollY < section.offsetTop + section.offsetHeight;
+    let midpoint = section.offsetTop + section.offsetHeight / 2;
+    return window.scrollY >= section.offsetTop && window.scrollY < midpoint;
   });
   
   // Handle the edge case when the scroll position is exactly at the top of the page
