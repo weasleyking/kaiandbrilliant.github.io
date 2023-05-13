@@ -8,6 +8,7 @@ function disableScroll() {
   }, { passive: false });
 }
 
+/*
 function scrollToSection(direction) {
   let sections = Array.from(document.getElementsByClassName('container'));
 
@@ -25,6 +26,23 @@ function scrollToSection(direction) {
   let targetSectionIndex = currentSectionIndex + (direction === 'up' ? -1 : 1);
 
   if (targetSectionIndex >= 0 && targetSectionIndex < sections.length) {
+    window.scrollTo({
+      top: sections[targetSectionIndex].offsetTop,
+      behavior: 'smooth',
+    });
+  }
+}
+*/
+
+let currentSectionIndex = 0; // Store the current section index
+
+function scrollToSection(direction) {
+  let sections = Array.from(document.getElementsByClassName('container'));
+
+  let targetSectionIndex = currentSectionIndex + (direction === 'up' ? -1 : 1);
+
+  if (targetSectionIndex >= 0 && targetSectionIndex < sections.length) {
+    currentSectionIndex = targetSectionIndex; // Update the current section index
     window.scrollTo({
       top: sections[targetSectionIndex].offsetTop,
       behavior: 'smooth',
