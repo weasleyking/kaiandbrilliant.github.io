@@ -30,7 +30,7 @@ const words6 = (p) => {
     p.textSize(calculateTextSize()-3);
     p.textLeading(calculateTextLeading()-3);
     
-    let allText = "That’s why as a violinist\nI apprenticed and learned to\ncraft my own instrument;\n\nor for a VR film I invented\nan advanced locomotion technique\nthat allowed viewers to walk\nboth space & time of the footage;\n\nor, for a (secret) project going on NASA’s zero-G flight,\nI taught myself how to make a\nmechanical gyroscopic inertial navigation system\n\n(many of these thanks to brilliant.org!)";
+    let allText = "\nThat’s why as a violinist\nI apprenticed and learned to\ncraft my own instrument;\n\nor for a VR film I invented\nan advanced locomotion technique\nthat allowed viewers to walk\nboth space & time of the footage;\n\nor, for a (secret) project going on NASA’s zero-G flight,\nI taught myself how to make a\nmechanical gyroscopic inertial navigation system\n";
     
     p.fill(0);
     p.text(allText, p.width * 0.2, p.height *0.2, p.width *0.8);
