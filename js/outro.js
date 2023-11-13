@@ -29,7 +29,7 @@ const outro = (p) => {
     p.textSize(calculateTextSize()-8);
     p.textLeading(calculateTextLeading()-8);
     
-    let allText = "With our shared passion for\nengaging people through interactivity,\n\nI look forward to meeting Brilliant’s diverse\nteam of scientists, engineers, and artists,\n\nand I’m excited to experiment with new tools,\nsolve challenging problems,\nand make some amazing things together.";
+    let allText = "With our shared passion for\nengaging people through interactivity,\n\nI look forward to meeting\nyour program's diverse team of\nscientists, engineers, and artists,\n\nand I’m excited to experiment with new tools,\nsolve challenging problems,\nand make some amazing things together.";
     
     p.fill(0);
     p.text(allText, p.width * 0.2, p.height*0.28, p.width *0.8); 
