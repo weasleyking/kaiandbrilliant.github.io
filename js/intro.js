@@ -131,7 +131,7 @@ const intro = (p) => {
     p.textSize(calculateTextSize());
     p.textLeading(calculateTextLeading());
     
-    let allText = "Hey! \nMy name is Kai. \nI think we will make\ngreat things together,\nbecause:";
+    let allText = "Hey! \nMy name is Kai. \nI think we will make\ngreat things together,\nif:";
     
     p.fill(0);
     let charactersToAdd = p.min(p.floor(frameCounter / 1.5), allText.length);
